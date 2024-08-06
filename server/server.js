@@ -18,7 +18,7 @@ let db;
 app.use(express.json());
 
 const corsOptions = {
-  origin: "http://localhost:5173", // your frontend URL
+  origin: process.env.CORS_ORIGIN_URI, // your frontend URL
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // allow session cookies from browser to pass through
   optionsSuccessStatus: 204,
@@ -60,9 +60,7 @@ app.post("/projects", async (req, res) => {
     const result = await projectsCollection.insertOne(newProject);
     res.status(200).json(result);
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "An error occurred while adding the project" });
+    res.status(500).json({ error: error });
   }
 });
 

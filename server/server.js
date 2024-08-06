@@ -91,7 +91,7 @@ app.post("/users", (req, res) => {
   const newUser = req.body;
   newUser.id = users.length + 1; // Simple ID generation
   users.push(newUser);
-  res.status(201).json(newUser);
+  res.status(200).json(newUser);
 });
 
 // Error Handling for Uncaught Exceptions
@@ -102,7 +102,7 @@ app.use((err, req, res, next) => {
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}/`);
+  console.log(`Server is running at port: ${PORT}/`);
 });
 
 // Node.js server without express.js

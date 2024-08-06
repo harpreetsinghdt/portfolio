@@ -3,7 +3,7 @@ var cors = require("cors");
 const { MongoClient } = require("mongodb");
 const dotenv = require("dotenv");
 
-const path = require("path");
+// const path = require("path");
 
 dotenv.config();
 

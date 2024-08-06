@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import reactImg from "../../assets/react-core-concepts.png";
 import "./Header.css";
 
@@ -17,6 +18,9 @@ export default function Header() {
       <p>
         {description} React projects I will need for almost any app I am going
         to build!
+      </p>
+      <p>
+        <Link to="/add-project">Add Project</Link>
       </p>
     </header>
   );

@@ -10,7 +10,7 @@ const PORT = 5000;
 
 // MongoDB connection URL and database name
 const url = process.env.MONGODB_URI; // Connection string from MongoDB Atlas
-const dbName = "portfolio"; // Replace with your database name
+const dbName = process.env.MONGODB_DATABASE; // Replace with your database name
 
 let db;
 

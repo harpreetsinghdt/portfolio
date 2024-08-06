@@ -8,6 +8,6 @@ export default defineConfig({
     outDir: "../dist", // Adjust the output directory if needed
   },
   server: {
-    port: 3000, // Ensure the port matches your deployment configuration
+    port: 10000, // Ensure the port matches your deployment configuration
   },
 });

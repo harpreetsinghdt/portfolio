@@ -7,6 +7,8 @@ const path = require("path");
 dotenv.config();
 
 const app = express();
+
+const HOSTNAME = "0.0.0.0";
 const PORT = process.env.PORT || 5000;
 
 // MongoDB connection URL and database name
@@ -100,7 +102,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server
-app.listen(PORT, () => {
+app.listen(PORT, HOSTNAME, () => {
   console.log(`Server is running at port: ${PORT}`);
 });
 

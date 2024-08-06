@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // MongoDB connection URL and database name
 const url = process.env.MONGODB_URI; // Connection string from MongoDB Atlas
@@ -23,15 +23,26 @@ const corsOptions = {
   credentials: true, // allow session cookies from browser to pass through
   optionsSuccessStatus: 204,
 };
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Connect to MongoDB
 MongoClient.connect(url, {})
   .then((client) => {
-    console.log("Connected to Database");
+    console.log("MongoDB connected successfully.");
     db = client.db(dbName);
   })
   .catch((error) => console.error(error));
+
+// Serve static assets if in production
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static(path.join(__dirname, "../client/build")));
+
+  // Serve the React app
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+  });
+}
 
 // GET endpoint
 app.get("/", (req, res) => {
@@ -79,6 +90,12 @@ app.post("/users", (req, res) => {
   newUser.id = users.length + 1; // Simple ID generation
   users.push(newUser);
   res.status(201).json(newUser);
+});
+
+// Error Handling for Uncaught Exceptions
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something went wrong!");
 });
 
 // Start the server

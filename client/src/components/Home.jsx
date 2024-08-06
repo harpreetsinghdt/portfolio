@@ -23,7 +23,6 @@ const Home = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           setProjects(data);
         })
         .catch((error) => console.error("Error fetching data:", error));

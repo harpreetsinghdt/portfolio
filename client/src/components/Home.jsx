@@ -37,8 +37,6 @@ const Home = () => {
     // console.log(selectedTopic);
   }
 
-  console.log("APP COMPONENT EXECUTING");
-
   let tabContent = <p>Please select a topic.</p>;
 
   if (selectedTopic) {

@@ -2,8 +2,7 @@ const express = require("express");
 var cors = require("cors");
 const { MongoClient } = require("mongodb");
 const dotenv = require("dotenv");
-
-// const path = require("path");
+const path = require("path");
 
 dotenv.config();
 
@@ -34,17 +33,6 @@ MongoClient.connect(url, {})
     db = client.db(dbName);
   })
   .catch((error) => console.error(error));
-
-// Serve static assets if in production
-// if (process.env.NODE_ENV === "production") {
-//   // Set static folder
-//   app.use(express.static(path.join(__dirname, "../client/build")));
-
-//   // Serve the React app
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "../client/build", "index.html"));
-//   });
-// }
 
 // GET endpoint
 app.get("/", (req, res) => {
@@ -93,6 +81,17 @@ app.post("/users", (req, res) => {
   users.push(newUser);
   res.status(200).json(newUser);
 });
+
+// Serve static assets if in production
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static(path.join(__dirname, "../client/dist")));
+
+  // Serve the React app
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
+  });
+}
 
 // Error Handling for Uncaught Exceptions
 app.use((err, req, res, next) => {

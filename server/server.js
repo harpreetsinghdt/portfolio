@@ -8,7 +8,6 @@ dotenv.config();
 
 const app = express();
 
-// const HOSTNAME = "0.0.0.0";
 const PORT = process.env.PORT || 5000;
 
 // MongoDB connection URL and database name

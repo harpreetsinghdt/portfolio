@@ -156,3 +156,7 @@ main h2 {
 .form-group button:hover {
   background-color: #0056b3;
 }
+
+.margin-right {
+  margin-right: 10px;
+}

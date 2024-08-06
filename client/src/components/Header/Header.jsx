@@ -20,7 +20,12 @@ export default function Header() {
         to build!
       </p>
       <p>
-        <Link to="/add-project">Add Project</Link>
+        <span className="margin-right">
+          <Link to="/">Home</Link>
+        </span>
+        <span className="margin-right">
+          <Link to="/add-project">Add Project</Link>
+        </span>
       </p>
     </header>
   );

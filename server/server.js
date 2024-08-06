@@ -47,9 +47,7 @@ app.get("/projects", async (req, res) => {
     const projects = await projectsCollection.find().toArray();
     res.json(projects);
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "An error occurred while fetching projects" });
+    res.status(500).json({ error: error });
   }
 });
 // POST endpoint to add a new project

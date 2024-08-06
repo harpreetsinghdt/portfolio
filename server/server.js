@@ -36,15 +36,15 @@ MongoClient.connect(url, {})
   .catch((error) => console.error(error));
 
 // Serve static assets if in production
-if (process.env.NODE_ENV === "production") {
-  // Set static folder
-  app.use(express.static(path.join(__dirname, "../client/build")));
+// if (process.env.NODE_ENV === "production") {
+//   // Set static folder
+//   app.use(express.static(path.join(__dirname, "../client/build")));
 
-  // Serve the React app
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/build", "index.html"));
-  });
-}
+//   // Serve the React app
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+//   });
+// }
 
 // GET endpoint
 app.get("/", (req, res) => {
